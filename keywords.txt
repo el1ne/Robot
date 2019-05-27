@@ -1,0 +1,3 @@
+Motor	KEYWORD1
+IRSeeker  KEYWORD1
+IRLocator KEYWORD1
