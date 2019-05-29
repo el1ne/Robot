@@ -97,7 +97,7 @@ void Gyro::init(uint32_t time){
   Led ledL(11);
   Led ledM(7);
   Led ledR(3);
-  while (millis() - t < time){
+  while (!Serial3.available()){
     ledL.off();
     ledM.off();
     ledR.on();
