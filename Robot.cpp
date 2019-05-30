@@ -44,15 +44,15 @@ int IRLocator::getDir600(){
 }
 
 int IRSeeker::getDir1200(){
-  int value = int(Read(IRSensor::dir1200) * 5 + 540) % 360 - 180;
-  if (value > 127) value =- 255;
-  return -value;
+  int value = Read(IRSensor::dir1200);
+  if (value > 127) value -= 255;
+  return value;
 }
 
 int IRSeeker::getDir600(){
-  int value = int(Read(IRSensor::dir600) * 5 + 540) % 360 - 180;
-  if (value > 127) value =- 255;
-  return -value;
+  int value = Read(IRSensor::dir600);
+  if (value > 127) value -= 255;
+  return value;
 }
 
 Motor::Motor(int pwm, int ain1, int ain2){
