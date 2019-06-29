@@ -51,7 +51,7 @@ class Led{
 
 class Gyro{
   public:
-    void init(uint32_t time);
+    void init();
     int read();
 };
 

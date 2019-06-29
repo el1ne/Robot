@@ -16,14 +16,12 @@ void IRSensor::init(){
 }
 
 int IRSensor::Read(byte message){
+  static int value;
   Wire.beginTransmission(IRSensor::address);
   Wire.write(message);
   Wire.endTransmission();
   Wire.requestFrom(IRSensor::address, 1);
-  while (Wire.available() < 1);
-  int value = Wire.read();
-  while(Wire.available() > 0)
-    Wire.read();
+  if (Wire.available() <= 1) value = Wire.read();
   return value;
 }
 
@@ -92,8 +90,7 @@ void Led::off(){
   digitalWrite(_pin, LOW);
 }
 
-void Gyro::init(uint32_t time){
-  uint32_t t = millis();
+void Gyro::init(){;
   Led ledL(11);
   Led ledM(7);
   Led ledR(3);
@@ -125,6 +122,8 @@ void Gyro::init(uint32_t time){
 
 int Gyro::read(){
   static int gyroValue;
-  if (Serial3.available()) gyroValue = Serial3.read();
+  if (Serial3.available()){
+    gyroValue = Serial3.read();
+  }
   return gyroValue - 126;
 }
